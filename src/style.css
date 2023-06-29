@@ -1,0 +1,98 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Raleway:wght@400;700&display=swap");
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+  font-family: "Raleway", sans-serif;
+  user-select: none;
+  color: #ffecec;
+}
+.meme-logo {
+  height: 90px;
+}
+.app-container {
+  max-width: 400px;
+  height: auto;
+  background-color: #ff78c4;
+  margin: 30px auto;
+  border-radius: 35px;
+  overflow: hidden;
+  border-radius: 15px;
+}
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffbdf7;
+  padding: 6px 33px;
+  width: 100%;
+}
+.title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #ff78c4;
+}
+.input-field {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 18px 0px;
+}
+input {
+  padding: 9px;
+  font-size: 15px;
+  margin: 5px 2px;
+  color: black;
+  width: 180px;
+  border: none;
+  outline: none;
+  background-color: white;
+  color: black;
+  border-radius: 9px;
+}
+::placeholder {
+  color: black;
+}
+input:focus {
+  outline: 2px solid #ffbdf7;
+  color: black;
+}
+.generateBTN {
+  margin: 1px auto;
+  padding: 9px;
+  background-color: #e1aeff;
+  color: black;
+  font-weight: bold;
+  margin-left: 30%;
+  border-radius: 9px;
+}
+.generateBTN:active {
+  background-color: #e1aeff;
+}
+.meme-image {
+  margin: 21px auto;
+}
+.imageMeme {
+  max-width: 350px;
+  height: auto;
+  margin: 12px 10px 20px 25px;
+  border-radius: 9px;
+  border: 2px solid white;
+}
+.first {
+  position: absolute;
+  top: 18rem;
+  /* right: 5px; */
+  padding-left: 50px;
+  color: white;
+}
+.second {
+  position: absolute;
+  top: 28rem;
+  /* right: 5px; */
+  padding-left: 220px;
+  color: white;
+}
