@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
+import Draggable from "react-draggable";
 
 function Meme(props) {
   const [appData, setAppData] = useState({
@@ -8,6 +9,8 @@ function Meme(props) {
   });
   const [memeList, setMemeList] = useState([]);
   const [randomMeme, setRandomMeme] = useState(null);
+  const [textColor, setTextColor] = useState("#000000");
+  const [fontSize, setFontSize] = useState("25px");
 
   useEffect(() => {
     fetchMemes();
@@ -43,6 +46,14 @@ function Meme(props) {
     }));
   };
 
+  const handleTextColorChange = (event) => {
+    setTextColor(event.target.value);
+  };
+
+  const handleFontSizeChange = (event) => {
+    setFontSize(event.target.value);
+  };
+
   return (
     <div className="meme-container">
       <nav className="navbar">
@@ -52,24 +63,46 @@ function Meme(props) {
       <div className="input-field">
         <input
           type="text"
-          placeholder="Enter the first line..."
+          placeholder="Enter text..."
           name="firstline"
           onChange={enterLine}
           value={appData.firstline}
         />
         <input
           type="text"
-          placeholder="Enter the second line..."
+          placeholder="Enter more text..."
           name="secondline"
           onChange={enterLine}
           value={appData.secondline}
         />
       </div>
+      <div className="input-field">
+        <label>Font Size:</label>
+        <input
+          type="number"
+          placeholder="Font Size"
+          name="fontSize"
+          onChange={handleFontSizeChange}
+          value={fontSize.replace("px", "")}
+          style={{ width: "60px" }}
+        />
+      </div>
+
+      <div className="input-field">
+        <label>Text Color:</label>
+        <input
+          type="color"
+          name="textColor"
+          onChange={handleTextColorChange}
+          value={textColor}
+          style={{ width: "60px" }}
+        />
+      </div>
       <button className="generateBTN" onClick={getRandomMeme}>
-        Load random image
+        Load random meme
       </button>
       {memeList.length === 0 ? (
-        <p>Loading...</p>
+        <p className="loading-message">Loading...</p>
       ) : randomMeme !== null && memeList.length > 0 ? (
         <div className="meme-image">
           <img
@@ -77,11 +110,26 @@ function Meme(props) {
             src={`http://localhost:1337${randomMeme}`}
             alt="Meme Not Responding"
           />
-          <h2 className="first">{appData.firstline}</h2>
-          <h2 className="second">{appData.secondline}</h2>
+          <Draggable>
+            <h2
+              className="first"
+              style={{ color: textColor, fontSize: fontSize }}
+            >
+              {appData.firstline}
+            </h2>
+          </Draggable>
+
+          <Draggable>
+            <h2
+              className="second"
+              style={{ color: textColor, fontSize: fontSize }}
+            >
+              {appData.secondline}
+            </h2>
+          </Draggable>
         </div>
       ) : (
-        <p>Press the button to generate a meme</p>
+        <p className="placeholder-paragraph">.</p>
       )}
     </div>
   );

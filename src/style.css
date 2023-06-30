@@ -1,5 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Raleway:wght@400;700&display=swap");
 
+@font-face {
+  font-family: "Impact";
+  src: url("./impact-font/impact.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 html {
   background-color: #ffecec;
 }
@@ -8,7 +15,7 @@ html {
   padding: 0px;
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
-  font-family: "Raleway", sans-serif;
+  /* font-family: "Impact"; */
   user-select: none;
   color: #ffecec;
 }
@@ -33,9 +40,12 @@ html {
   width: 100%;
 }
 .title {
-  font-size: 16px;
+  font-size: 25px;
   font-weight: bold;
-  color: #ff78c4;
+  color: white;
+  font-family: "Impact";
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 4px #000000;
 }
 .input-field {
   display: flex;
@@ -43,7 +53,9 @@ html {
   flex-wrap: wrap;
   align-items: center;
   margin: 18px 0px;
+  font-weight: bold;
 }
+
 input {
   padding: 9px;
   font-size: 15px;
@@ -87,15 +99,22 @@ input:focus {
 }
 .first {
   position: absolute;
-  top: 18rem;
+  top: 30rem;
   /* right: 5px; */
   padding-left: 50px;
-  color: white;
+  color: black;
+  font-family: "Impact";
 }
+
 .second {
   position: absolute;
-  top: 28rem;
+  top: 40rem;
   /* right: 5px; */
-  padding-left: 220px;
-  color: white;
+  padding-left: 50px;
+  color: black;
+  font-family: "Impact";
+}
+
+.placeholder-paragraph {
+  color: #ff78c4;
 }
