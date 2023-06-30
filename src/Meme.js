@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./style.css";
 import Draggable from "react-draggable";
 
@@ -11,6 +11,7 @@ function Meme(props) {
   const [randomMeme, setRandomMeme] = useState(null);
   const [textColor, setTextColor] = useState("#000000");
   const [fontSize, setFontSize] = useState("25px");
+  // const memeRef = useRef(null);
 
   useEffect(() => {
     fetchMemes();
@@ -51,8 +52,32 @@ function Meme(props) {
   };
 
   const handleFontSizeChange = (event) => {
-    setFontSize(event.target.value);
+    setFontSize(`${event.target.value}px`);
   };
+
+  // const handleSaveMeme = () => {
+  //   if (memeRef.current) {
+  //     const canvas = document.createElement("canvas");
+  //     const memeImage = memeRef.current;
+
+  //     canvas.width = memeImage.width;
+  //     canvas.height = memeImage.height;
+
+  //     const context = canvas.getContext("2d");
+  //     context.drawImage(memeImage, 0, 0);
+
+  //     context.font = `${fontSize} sans-serif`;
+  //     context.fillStyle = textColor;
+  //     context.fillText(appData.firstline, 10, 50);
+  //     context.fillText(appData.secondline, 10, 100);
+
+  //     const dataURL = canvas.toDataURL("image/png");
+  //     const link = document.createElement("a");
+  //     link.href = dataURL;
+  //     link.download = "meme.png";
+  //     link.click();
+  //   }
+  // };
 
   return (
     <div className="meme-container">
@@ -99,7 +124,7 @@ function Meme(props) {
         />
       </div>
       <button className="generateBTN" onClick={getRandomMeme}>
-        Load random meme
+        Load random Meme
       </button>
       {memeList.length === 0 ? (
         <p className="loading-message">Loading...</p>
@@ -109,6 +134,7 @@ function Meme(props) {
             className="imageMeme"
             src={`http://localhost:1337${randomMeme}`}
             alt="Meme Not Responding"
+            // ref={memeRef}
           />
           <Draggable>
             <h2
@@ -131,6 +157,9 @@ function Meme(props) {
       ) : (
         <p className="placeholder-paragraph">.</p>
       )}
+      {/* <button className="saveBTN" onClick={handleSaveMeme}>
+        Save Meme
+      </button> */}
     </div>
   );
 }

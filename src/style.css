@@ -17,8 +17,8 @@ html {
   font-family: "Montserrat", sans-serif;
   /* font-family: "Impact"; */
   user-select: none;
-  color: #ffecec;
 }
+
 .meme-logo {
   height: 90px;
 }
@@ -117,4 +117,18 @@ input:focus {
 
 .placeholder-paragraph {
   color: #ff78c4;
+}
+
+.saveBTN {
+  margin: 1px auto;
+  padding: 9px;
+  background-color: #e1aeff;
+  color: black;
+  font-weight: bold;
+  margin-left: 38%;
+  margin-bottom: 5%;
+  border-radius: 9px;
+}
+.saveBTN:active {
+  background-color: #e1aeff;
 }
