@@ -1,7 +1,7 @@
 import React from "react";
 import Meme from "./Meme";
 import "./style.css";
-import logoUrl from "./girl.png";
+import logoUrl from "./doge.png";
 
 function App() {
   return (

@@ -1,40 +1,48 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./style.css";
-import { useState, useEffect } from "react";
 
 function Meme(props) {
   const [appData, setAppData] = useState({
     firstline: "",
     secondline: "",
   });
-  // const [newMemeData, setNewMemeData] = useState([]);
-  const [memeList, setmemeList] = useState([]);
-  const [randomMeme, setrandomMeme] = useState(null);
-  function meme() {
-    fetch("http://localhost:1337/api/memes?populate=meme")
-      .then((res) => res.json())
-      .then((meme) => {
-        setmemeList(meme.data);
-      });
-  }
+  const [memeList, setMemeList] = useState([]);
+  const [randomMeme, setRandomMeme] = useState(null);
+
   useEffect(() => {
-    meme();
+    fetchMemes();
   }, []);
-  function getRandomMeme() {
+
+  const fetchMemes = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:1337/api/memes?populate=meme"
+      );
+      const data = await response.json();
+      setMemeList(data.data);
+      console.log(data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getRandomMeme = () => {
+    if (memeList.length === 0) {
+      return;
+    }
     const randomNumber = Math.floor(Math.random() * memeList.length);
     let randomMemeURL =
-      memeList[randomNumber].attributes.meme.data.attributes.url;
-    setrandomMeme(randomMemeURL);
-  }
-  function enterLine(event) {
-    setAppData((prevAppData) => {
-      return {
-        ...prevAppData,
-        [event.target.name]: event.target.value,
-      };
-    });
-  }
-  console.log(appData);
+      memeList[randomNumber].attributes.meme.data[0].attributes.url;
+    setRandomMeme(randomMemeURL);
+  };
+
+  const enterLine = (event) => {
+    setAppData((prevAppData) => ({
+      ...prevAppData,
+      [event.target.name]: event.target.value,
+    }));
+  };
+
   return (
     <div className="meme-container">
       <nav className="navbar">
@@ -60,18 +68,23 @@ function Meme(props) {
       <button className="generateBTN" onClick={getRandomMeme}>
         Load random image
       </button>
-      {randomMeme !== null && (
+      {memeList.length === 0 ? (
+        <p>Loading...</p>
+      ) : randomMeme !== null && memeList.length > 0 ? (
         <div className="meme-image">
           <img
             className="imageMeme"
             src={`http://localhost:1337${randomMeme}`}
-            alt="Meme Not Responding "
+            alt="Meme Not Responding"
           />
           <h2 className="first">{appData.firstline}</h2>
           <h2 className="second">{appData.secondline}</h2>
         </div>
+      ) : (
+        <p>Press the button to generate a meme</p>
       )}
     </div>
   );
 }
+
 export default Meme;
